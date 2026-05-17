@@ -7,7 +7,16 @@ import Navbar from "./components/Navbar";
 
 function App() {
   const [carrinho, setCarrinho] = useState([]);
+  const [busca, setBusca] = useState("");
 
+  const produtosFiltrados = produtos.filter((produto) =>
+    produto.nome.toLowerCase().includes(busca.toLowerCase()),
+  );
+
+  const quantidadeTotal = carrinho.reduce(
+    (acc, item) => acc + item.quantidade,
+    0,
+  );
   function adicionarAoCarrinho(produto) {
     // procura se o produto já existe já existe
     const produtoExistente = carrinho.find((item) => item.id === produto.id);
@@ -76,30 +85,32 @@ function App() {
 
   return (
     <>
-    <Navbar/>
+      <Navbar busca={busca} setBusca={setBusca} />
 
-    <Conteudo>
-      <ListadeProdutos>
-      {produtos.map((produto) => (
-        <Produto
-        key={produto.id}
-        nome={produto.nome}
-          preco={produto.preco}
-          imagem={produto.imagem}
-          onAdicionar={() => adicionarAoCarrinho(produto)}
-          />
-        ))}
-      </ListadeProdutos>
+      <Conteudo>
+        <ListadeProdutos>
+          {produtosFiltrados.map((produto) => (
+            <Produto
+              key={produto.id}
+              nome={produto.nome}
+              preco={produto.preco}
+              imagem={produto.imagem}
+              descricao={produto.descricao}
+              onAdicionar={() => adicionarAoCarrinho(produto)}
+            />
+          ))}
+        </ListadeProdutos>
 
-      <Carrinho
-        carrinho={carrinho}
-        total={total}
-        adicionarAoCarrinho={adicionarAoCarrinho}
-        diminuirQuantidade={diminuirQuantidade}
-        removerDoCarrinho={removerDoCarrinho}
+        <Carrinho
+          carrinho={carrinho}
+          total={total}
+          adicionarAoCarrinho={adicionarAoCarrinho}
+          diminuirQuantidade={diminuirQuantidade}
+          removerDoCarrinho={removerDoCarrinho}
+          quantidadeTotal={quantidadeTotal}
         />
-    </Conteudo>
-</>
+      </Conteudo>
+    </>
   );
 }
 
@@ -109,19 +120,35 @@ const Conteudo = styled.div`
 
   align-items: flex-start;
   justify-content: space-around;
+  flex-wrap: wrap;
 
-  background-color: #faf3e0;
+background: linear-gradient(
+  to bottom,
+  #fff8f3,
+  #faf3e0
+);
 
   font-family: "Nunito", sans-serif;
 
   min-height: 100vh;
 
   padding: 30px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
-const ListadeProdutos = styled.div `
+const ListadeProdutos = styled.div`
   display: flex;
   gap: 20px;
-
   flex-wrap: wrap;
-`
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;

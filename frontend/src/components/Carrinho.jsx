@@ -1,4 +1,10 @@
-import { MinusIcon, PlusIcon, ShoppingCartIcon, TrashIcon } from "@phosphor-icons/react";
+import {
+  ArrowRightIcon,
+  MinusIcon,
+  PlusIcon,
+  ShoppingCartIcon,
+  TrashIcon,
+} from "@phosphor-icons/react";
 import styled from "styled-components";
 
 function Carrinho({
@@ -16,18 +22,21 @@ function Carrinho({
       </Titulo>
 
       {carrinho.length === 0 ? (
-        <Texto>Seu carrinho está vazio</Texto>
+        <Texto>
+          <p>🧁 Seu carrinho está vazio</p>
+          <p>Adicione doces deliciosos!</p>
+          </Texto>
+
       ) : (
         carrinho.map((item) => (
           <Produto key={item.id}>
-
+            {<Imagem src={item.imagem} />}
             <InfoProduto>
-            <h3>{item.nome}</h3>
-            <p>R$ {(item.preco * item.quantidade).toFixed(2)}</p>
+              <h3>{item.nome}</h3>
+              <p>R$ {(item.preco * item.quantidade).toFixed(2)}</p>
             </InfoProduto>
 
             <AdicionaProduto>
-
               <Quantidade>
                 <button onClick={() => diminuirQuantidade(item.id)}>
                   <MinusIcon size={20} />
@@ -49,14 +58,15 @@ function Carrinho({
       )}
 
       <Total>
-        <p>
-        Total: 
-        </p>
-        <p>
-          R$ {total.toFixed(2)}
-        </p>
+        <p>Total:</p>
+        <p>R$ {total.toFixed(2)}</p>
       </Total>
-        
+      <FinalizarPedido>
+        Finalizar Pedido
+        <div>
+          <ArrowRightIcon size={20} weight="bold" />
+        </div>
+      </FinalizarPedido>
     </Caixa>
   );
 }
@@ -64,15 +74,25 @@ function Carrinho({
 export default Carrinho;
 
 const Caixa = styled.div`
-  width: 80vw;
+  width: 50vw;
   margin: 10px;
   gap: 10px;
-  border-radius: 8px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f1e4e8;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
 `;
 
 const Titulo = styled.div`
@@ -80,10 +100,9 @@ const Titulo = styled.div`
   padding: 10px;
 
   & > h2 {
-    padding: 5px;
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 700;
     color: #3e2723;
-    font-weight: 400;
   }
 `;
 
@@ -93,18 +112,20 @@ const Texto = styled.p`
 `;
 
 const Total = styled.h3`
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #6b4f4f;
-  font-weight:500;
-  border-top: 1px solid #3e272399;
   font-weight: 500;
+  font-weight: 800;
   width: 80%;
   padding: 15px;
   /* background-color: red; */
   overflow: hidden;
-  `;
+  background: #fff8f3;
+  border-radius: 14px;
+`;
 
 const Produto = styled.div`
   width: 80%;
@@ -112,55 +133,79 @@ const Produto = styled.div`
   /* background-color: red; */
   display: flex;
   justify-content: space-between;
-  
-`
+
+  padding: 14px 0;
+  border-bottom: 1px solid #f1e4e8;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
 
 const InfoProduto = styled.div`
   padding: 2px 20px;
 
-  &>h3{
-    color:#5c4033;
+  & > h3 {
+    color: #5c4033;
     font-weight: 700;
   }
 
-  &>p{
+  & > p {
     padding-top: 5px;
     font-size: 15px;
-     color: #6b4f4f;
+    color: #6b4f4f;
   }
-  
-`
+`;
+
+const Imagem = styled.img`
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+
+  border-radius: 14px;
+`;
+
 const AdicionaProduto = styled.div`
-display: flex;
-align-items: center;
-
-`
-const Quantidade = styled.div`
-
   display: flex;
   align-items: center;
-  justify-content: center;
+`;
+const Quantidade = styled.div`
+  display: flex;
+  align-items: center;
 
+  overflow: hidden;
 
-  &>span{
-    background-color: #fdf9f7;
-    padding: 3px;
-    font-size: 20px;
-     flex: 1;
-    
+  border-radius: 12px;
+
+  border: 1px solid #eadede;
+
+  background: #fff;
+
+  & > span {
+    width: 36px;
+
+    text-align: center;
+
+    font-weight: 600;
   }
-  
-  &>button{
-    font-size: 20px;
-    border: 1px solid #d8cfc9;
-    /* border-radius: 16px; */
-    padding: 3px;
 
-    cursor: pointer;
+  & > button {
+    width: 36px;
+    height: 36px;
 
-    background-color: #fdf9f7;
+    border: none;
+
+    background: #fff8f3;
+
+    font-size: 18px;
+
+    transition: 0.2s;
+
+    &:hover {
+      background: #f7cad0;
+    }
   }
-`
+`;
 const Remove = styled.button`
   border: none;
   background: transparent;
@@ -173,4 +218,45 @@ const Remove = styled.button`
 
   color: #5c4033;
   font-size: 20px;
-`
+
+  transition: 0.2s;
+
+  &:hover {
+    color: #ff6f91;
+    transform: scale(1.1);
+  }
+`;
+const FinalizarPedido = styled.button`
+  width: 80%;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #f56b8a, #ff8fab);
+
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  box-shadow: 0 4px 12px rgba(255, 111, 145, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 111, 145, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+`;

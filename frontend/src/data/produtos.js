@@ -3,8 +3,9 @@ export const produtos = [
     id: 1,
     nome: "Bolo Matilda",
     preco: 18.0,
-    imagem:
-      "https://www.oetker.com.br/assets/recipes/assets/a81bc035eb7f407faaa2c93e04edaf78/750x910/bolo-de-aniversrio-de-chocolate.webp",
+    imagem:"https://www.oetker.com.br/assets/recipes/assets/a81bc035eb7f407faaa2c93e04edaf78/750x910/bolo-de-aniversrio-de-chocolate.webp",
+    descricao:"Bolo de Brigadeiro, bastante chocolatudo",
+
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const produtos = [
     preco: 18.0,
     imagem:
       "https://www.oetker.com.br/assets/recipes/assets/a81bc035eb7f407faaa2c93e04edaf78/750x910/bolo-de-aniversrio-de-chocolate.webp",
+    descricao:"Bolo de Brigadeiro, brigadeiro branco e nutella",
   },
   {
     id: 3,
@@ -19,6 +21,8 @@ export const produtos = [
     preco: 18.0,
     imagem:
       "https://www.oetker.com.br/assets/recipes/assets/a81bc035eb7f407faaa2c93e04edaf78/750x910/bolo-de-aniversrio-de-chocolate.webp",
+    descricao:"Bolo com massa de chocolate e recheio de prestigio",
+
   },
 ];
 

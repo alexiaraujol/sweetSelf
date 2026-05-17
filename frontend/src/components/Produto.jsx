@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-function Produto({ nome, preco, imagem, onAdicionar }) {
+function Produto({ nome, preco, imagem, descricao, onAdicionar }) {
   return (
     <Caixa>
       <Foto src={imagem} alt={nome} />
       <Texto>
         <h2>{nome}</h2>
-        <p>Descrição</p>
+        <p>{descricao}</p>
 
         <PrecoAdicionar>
-        <h3>R${preco.toFixed(2)}</h3>
-        <Botao onClick={onAdicionar}>+</Botao>
+          <h3>R${preco.toFixed(2)}</h3>
+          <Botao onClick={onAdicionar}>+</Botao>
         </PrecoAdicionar>
       </Texto>
     </Caixa>
@@ -21,18 +21,24 @@ export default Produto;
 
 const Caixa = styled.div`
   width: 260px;
-  
-
   background-color: #fff;
-
   border-radius: 20px;
-
   overflow: hidden;
-
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-
   font-family: "Nunito", sans-serif;
   margin: 10px;
+
+  transition: 0.3s;
+
+&:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+  
+ @media (max-width: 768px) {
+    width:80vw;
+  }
+  
 `;
 
 const Foto = styled.img`
@@ -42,21 +48,18 @@ const Foto = styled.img`
 `;
 
 const Texto = styled.div`
-  padding: 18px;
+  padding: 16px;
+  gap: 8px;
 
   & > h2 {
-    color: #3e2723;
-
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-
-    margin-bottom: 10px;
+    color: #5c3a21;
   }
 
   & > p {
-    color: #8d6e63;
-
-    font-size: 15px;
+    font-size: 12px;
+    color: #9b8b8b;
     line-height: 1.4;
 
     margin-bottom: 20px;
@@ -70,10 +73,9 @@ const PrecoAdicionar = styled.div`
   justify-content: space-between;
 
   & > h3 {
-    color: #3e2723;
-
     font-size: 20px;
-    font-weight: 800;
+    font-weight: bold;
+    color: #ff6f91;
   }
 `;
 
@@ -84,7 +86,7 @@ const Botao = styled.button`
   border: none;
   border-radius: 50%;
 
-  background-color: #ff6f91;
+  background-color: #f56b8a;
 
   color: white;
 

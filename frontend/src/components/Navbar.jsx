@@ -1,27 +1,35 @@
 import styled from "styled-components";
 import logo from "../assets/logo.png";
+import perfil from "../assets/perfil.jpg";
 import { MagnifyingGlassIcon, ShoppingCartIcon } from "@phosphor-icons/react";
 
-function Navbar() {
+function Navbar({ busca, setBusca, quantidadeTotal }) {
   return (
     <Topo>
       <Logo>
-        <Imagem src={logo} alt="" />
+        <Imagem src={logo} alt="Logo do site, um cupcake de chocolate" />
         <Texto>
           <p>Sweet</p>
           <p>Self</p>
         </Texto>
       </Logo>
+      {/* <div>
+        <img src={perfil} />
+      </div> */}
       <Comandos>
         <Buscar>
-          <Input type="text" placeholder="buscar item..." />
+          <Input
+            type="text"
+            placeholder="buscar item..."
+            onChange={(e) => setBusca(e.target.value)}
+          />
           <BotaoBusca>
             <MagnifyingGlassIcon size={20} />
           </BotaoBusca>
         </Buscar>
         <Carrinho>
           <ShoppingCartIcon size={20} />
-          <p>Carrinho</p>
+          <p>Carrinho {quantidadeTotal}</p>
         </Carrinho>
       </Comandos>
     </Topo>
@@ -31,10 +39,27 @@ function Navbar() {
 export default Navbar;
 
 const Topo = styled.div`
-  background-color: #f7cad0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  padding: 12px 24px;
+
+  background: linear-gradient(to right, #f7cad0, #fde2e4);
+  min-height: 90px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 10px;
+  }
 `;
 
 const Comandos = styled.div`
@@ -45,18 +70,34 @@ const Comandos = styled.div`
 const Buscar = styled.div`
   display: flex;
   align-items: center;
-
-  width: 320px;
+ margin-right: 5px;
+  width: 280px;
   padding: 12px 16px;
 
   border: 1px solid #d8cfc9;
   border-radius: 16px;
 
   background-color: #fdf9f7;
+
+  transition: 0.2s;
+
+  &:hover {
+    border-color: #ff6f91;
+  }
+
+  &:focus-within {
+    border-color: #ff6f91;
+    box-shadow: 0 0 0 4px rgba(255, 111, 145, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
 `;
 
 const Input = styled.input`
   flex: 1;
+ 
 
   border: none;
   outline: none;
@@ -70,6 +111,10 @@ const Input = styled.input`
 
   &::placeholder {
     color: #a89b94;
+  }
+
+  @media (max-width: 768px) {
+    width: 70vw;
   }
 `;
 
@@ -88,30 +133,43 @@ const BotaoBusca = styled.button`
 `;
 
 const Carrinho = styled.div`
-  padding: 10px;
-  display: flex;
+   display: flex;
   align-items: center;
-  background-color: #fdf9f7;
-  margin-left: 5px;
+  gap: 10px;
 
-  &>p{
-    color: #5c4033;
-    font-size: 20px;
-    font-weight: 550;
-    padding: 3px;
+  padding: 12px 18px;
+
+  border-radius: 18px;
+
+  background-color: #fff;
+
+  border: 1px solid #f1d8dd;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
   }
 
-  border: 1px solid #d8cfc9;
-  border-radius: 16px;
-  padding: 12px 16px;
+  & > p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #5c4033;
+  }
 
-    cursor: pointer;
-    
-
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Logo = styled.div`
   display: flex;
+  gap: 8px;
+  align-items: center;
 `;
 
 const Imagem = styled.img`
@@ -127,7 +185,8 @@ const Texto = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 35px;
+font-size: 30px;
+line-height: 1;
   padding: 5px;
   text-align: center;
 `;

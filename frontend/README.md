@@ -1,16 +1,117 @@
-# React + Vite
+# 🍰 SweetSelf
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Sobre o projeto
 
-Currently, two official plugins are available:
+O **SweetSelf** é uma aplicação de autoatendimento criada para otimizar o processo de pedidos em festivais de tortas e eventos de confeitaria.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A ideia principal é permitir que as clientes façam seus pedidos antes mesmo de chegarem ao local do evento, reduzindo filas, agilizando o atendimento e organizando melhor os pedidos através de um sistema de senhas.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 🎯 Objetivo
 
-## Expanding the ESLint configuration
+O projeto foi desenvolvido com o objetivo de:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ⏱️ Reduzir filas em eventos e festivais
+- 📱 Facilitar o processo de pedidos
+- 🧁 Melhorar a experiência das clientes
+- 📋 Organizar os pedidos de forma mais eficiente
+- 🚀 Tornar o atendimento mais rápido e moderno
+
+---
+
+# ✨ Funcionalidades
+
+- 🔍 Visualização dos produtos disponíveis
+- 🛒 Carrinho de compras
+- ➕ Adição e remoção de itens
+- 📱 Interface responsiva
+- 🎨 Layout moderno e intuitivo
+- 🎟️ Geração de senha para organização dos pedidos
+- 📦 Organização dos pedidos realizados
+
+---
+
+# 🛠️ Tecnologias utilizadas
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=html,css,js,react,nodejs,git,github,vscode" />
+
+</div>
+
+---
+
+# 📸 Preview do projeto
+
+> Adicione aqui prints ou gifs da aplicação futuramente.
+
+```bash
+Exemplo:
+assets/preview.png
+```
+
+---
+
+# 🚀 Como executar o projeto
+
+## Clone o repositório
+
+```bash
+git clone LINK_DO_REPOSITORIO
+```
+
+## Entre na pasta
+
+```bash
+cd sweetself
+```
+
+## Instale as dependências
+
+```bash
+npm install
+```
+
+## Execute o projeto
+
+```bash
+npm run dev
+```
+
+---
+
+# 📂 Estrutura do projeto
+
+```bash
+src/
+ ├── assets/
+ ├── components/
+ ├── pages/
+ ├── styles/
+ ├── App.jsx
+ └── main.jsx
+```
+
+---
+
+# 💡 Futuras melhorias
+
+- 💳 Integração com pagamentos online
+- 🔔 Notificações de pedido pronto
+- 👩‍🍳 Painel administrativo para confeiteiras
+- 📊 Controle de estoque
+- 📱 Transformar em PWA/mobile app
+- 🧾 Histórico de pedidos
+
+---
+
+# 👩‍💻 Desenvolvedora
+
+Feito com 💖 por Alexia Araujo
+
+---
+
+# 📌 Status do projeto
+
+🚧 Em desenvolvimento
