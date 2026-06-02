@@ -51,6 +51,12 @@ Exemplo:
 assets/preview.png
 ```
 
+<p align="center">
+  <a href="https://sweet-self-ten.vercel.app/" target="_blank">
+    🚀 Clique aqui para acessar o projeto
+  </a>
+</p>
+
 ---
 
 # 🚀 Como executar o projeto
@@ -58,7 +64,7 @@ assets/preview.png
 ## Clone o repositório
 
 ```bash
-git clone LINK_DO_REPOSITORIO
+git clone github.com/alexiaraujol/sweetSelf
 ```
 
 ## Entre na pasta

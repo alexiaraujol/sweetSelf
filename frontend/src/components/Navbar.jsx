@@ -43,10 +43,10 @@ const Topo = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px 24px;
+  padding: 9px 24px;
 
   background: linear-gradient(to right, #f7cad0, #fde2e4);
-  min-height: 90px;
+  min-height: 60px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
   position: sticky;
@@ -168,7 +168,7 @@ const Carrinho = styled.div`
 
 const Logo = styled.div`
   display: flex;
-  gap: 8px;
+  /* gap: 6px; */
   align-items: center;
 `;
 
@@ -185,8 +185,8 @@ const Texto = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-font-size: 30px;
-line-height: 1;
-  padding: 5px;
+  font-size: 30px;
+  line-height: 1;
+  padding: 4px;
   text-align: center;
 `;

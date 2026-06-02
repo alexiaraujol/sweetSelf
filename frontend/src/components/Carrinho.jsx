@@ -5,15 +5,16 @@ import {
   ShoppingCartIcon,
   TrashIcon,
 } from "@phosphor-icons/react";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function Carrinho({
-  carrinho,
-  total,
-  adicionarAoCarrinho,
-  diminuirQuantidade,
-  removerDoCarrinho,
-}) {
+function Carrinho() {
+
+  const {carrinho, adicionarAoCarrinho, total,   diminuirQuantidade,
+  removerDoCarrinho} = useContext(CartContext); 
+
   return (
     <Caixa>
       <Titulo>
@@ -61,7 +62,7 @@ function Carrinho({
         <p>Total:</p>
         <p>R$ {total.toFixed(2)}</p>
       </Total>
-      <FinalizarPedido>
+      <FinalizarPedido to="/checkout">
         Finalizar Pedido
         <div>
           <ArrowRightIcon size={20} weight="bold" />
@@ -99,7 +100,7 @@ const Titulo = styled.div`
   display: flex;
   padding: 10px;
 
-  & > h2 {
+  &>h2 {
     font-size: 24px;
     font-weight: 700;
     color: #3e2723;
@@ -226,7 +227,7 @@ const Remove = styled.button`
     transform: scale(1.1);
   }
 `;
-const FinalizarPedido = styled.button`
+const FinalizarPedido = styled(Link)`
   width: 80%;
   height: 50px;
 
@@ -244,6 +245,7 @@ const FinalizarPedido = styled.button`
   font-size: 18px;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
 
   cursor: pointer;
 
