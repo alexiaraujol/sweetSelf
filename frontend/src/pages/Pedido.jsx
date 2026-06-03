@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 import Navbar from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
 function Confirmacao() {
   const { pedidoFinalizado } = useContext(CartContext);
@@ -13,10 +14,17 @@ function Confirmacao() {
   // mostra uma mensagem em vez de quebrar a página
   if (!pedidoFinalizado) {
     return (
-      <Corpo>
+      <>
+      <Navbar />
+      <CorpoVazio>
+
+        <PedidoNEncontrado>
         <p>Nenhum pedido encontrado.</p>
         <Botao onClick={() => navigate("/")}>Voltar ao início</Botao>
-      </Corpo>
+
+        </PedidoNEncontrado>
+      </CorpoVazio>
+      </>
     );
   }
 
@@ -70,6 +78,7 @@ function Confirmacao() {
           <Botao onClick={() => navigate("/")}>Fazer novo pedido</Botao>
         </Card>
       </Corpo>
+      <Footer/>
     </>
   );
 }
@@ -174,4 +183,37 @@ const Botao = styled.button`
 
   &:hover { transform: translateY(-2px); }
   &:active { transform: scale(0.98); }
+`;
+
+const PedidoNEncontrado = styled.div`
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 32px;
+  border: 1px solid #f1e4e8;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+
+  p{
+    font-size: 22px;
+    font-weight: 700;
+    color: #3e2723;
+    text-align: center;
+  }
+  
+`
+
+
+const CorpoVazio = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #fff8f3, #faf3e0);
+  font-family: "Nunito", sans-serif;
+  padding: 24px 20px;
 `;

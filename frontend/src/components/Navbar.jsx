@@ -2,11 +2,12 @@ import styled from "styled-components";
 import logo from "../assets/logo.png";
 import perfil from "../assets/perfil.jpg";
 import { MagnifyingGlassIcon, ShoppingCartIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 function Navbar({ busca, setBusca, quantidadeTotal }) {
   return (
     <Topo>
-      <Logo>
+      <Logo to ="/">
         <Imagem src={logo} alt="Logo do site, um cupcake de chocolate" />
         <Texto>
           <p>Sweet</p>
@@ -27,7 +28,7 @@ function Navbar({ busca, setBusca, quantidadeTotal }) {
             <MagnifyingGlassIcon size={20} />
           </BotaoBusca>
         </Buscar>
-        <Carrinho>
+        <Carrinho to ="/carrinho">
           <ShoppingCartIcon size={20} />
           <p>Carrinho {quantidadeTotal}</p>
         </Carrinho>
@@ -43,21 +44,25 @@ const Topo = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 9px 24px;
+  padding: 0px 25px;
 
   background: linear-gradient(to right, #f7cad0, #fde2e4);
   min-height: 60px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
+
 
   backdrop-filter: blur(10px);
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 20px;
+    gap:0px;
+    padding: 4px 20px;
     padding-bottom: 10px;
   }
 `;
@@ -132,25 +137,20 @@ const BotaoBusca = styled.button`
   font-size: 20px;
 `;
 
-const Carrinho = styled.div`
+const Carrinho = styled(Link)`
    display: flex;
   align-items: center;
   gap: 10px;
-
   padding: 12px 18px;
-
   border-radius: 18px;
-
   background-color: #fff;
-
   border: 1px solid #f1d8dd;
-
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  text-decoration: none;
 
   cursor: pointer;
 
   transition: 0.2s;
-
   &:hover {
     transform: translateY(-2px);
   }
@@ -166,15 +166,21 @@ const Carrinho = styled.div`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   display: flex;
   /* gap: 6px; */
   align-items: center;
+  text-decoration: none;
+
 `;
 
 const Imagem = styled.img`
   width: 90px;
   /* background-color: red; */
+
+    @media (max-width: 768px) {
+   width: 60px;
+  }
 `;
 
 const Texto = styled.div`
@@ -189,4 +195,7 @@ const Texto = styled.div`
   line-height: 1;
   padding: 4px;
   text-align: center;
+  @media (max-width: 768px) {
+     font-size: 24px;
+  }  
 `;

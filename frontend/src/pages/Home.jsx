@@ -1,12 +1,15 @@
 import { produtos } from "../data/produtos";
 import Produto from "../components/Produto";
 import { useContext, useState } from "react";
-import Carrinho from "../components/Carrinho";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { CartContext } from "../context/CartContext";
+import { useNavigate  } from "react-router-dom";
+import { ArrowRightIcon } from "@phosphor-icons/react";
+import { Footer } from "../components/Footer";
 
 function Home() {
+  const navigate = useNavigate();
   const { adicionarAoCarrinho } = useContext(CartContext);
   const [busca, setBusca] = useState("");
   const produtosFiltrados = produtos.filter((produto) =>
@@ -29,10 +32,8 @@ function Home() {
             />
           ))}
         </ListadeProdutos>
-
-        <Carrinho
-        />
       </Conteudo>
+        <Footer/>
     </>
   );
 }
@@ -50,9 +51,11 @@ const Conteudo = styled.div`
 
   font-family: "Nunito", sans-serif;
 
-  min-height: 100vh;
+  min-height: calc(100vh - 60px - 68px);
 
   padding: 30px;
+      margin-top: 161px;
+    margin-bottom: 61px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -71,4 +74,44 @@ const ListadeProdutos = styled.div`
     justify-content: center;
     align-items: center;
   }
+`;
+const FinalizarPedido = styled.button`
+  width: 80%;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #f56b8a, #ff8fab);
+
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  box-shadow: 0 4px 12px rgba(255, 111, 145, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 111, 145, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+@media (min-width: 768px) {
+    display: none;
+  }
+
 `;

@@ -5,7 +5,10 @@ export const CartContext = createContext();
 function CartProvider({ children }) {
   const [carrinho, setCarrinho] = useState([]);
 
-  const [pedidoFinalizado, setPedidoFinalizado] = useState(null); //Ele vai guardar {senha, nome, pagamento, itens, total}
+  const [pedidoFinalizado, setPedidoFinalizado] = useState(() => {
+    const salvo = localStorage.getItem("pedidoFinalizado");
+    return salvo ? JSON.parse(salvo) : null
+  }); // Se existir algo salvo, usa ele. Se não, começa com null 
 
   function adicionarAoCarrinho(produto) {
     // procura se o produto já existe já existe
@@ -84,8 +87,21 @@ function CartProvider({ children }) {
       total, // copia o total
     };
 
+    // Como salvar as informações no LocalStorage!
+
+    //salva no localStorage convertendo o objeto para o texto JSON
+    localStorage.setItem("pedido finalizado", JSON.stringify(pedido));
+
+    //recupera a lista de pedidos já salvos (ou começa um array vazio)
+    const pedidosAnteriores = JSON.parse(
+      localStorage.getItem("pedidos") || "[]",
+    );
+
+    //Adiciona o novo pedido à lista e salva de volta;
+    localStorage.setItem("pedidos", JSON.stringify([...pedidosAnteriores, pedido]));
+
     setPedidoFinalizado(pedido);
-    setCarrinho([]); //Limpa o carrinho assim que finalizar o pedido; 
+    setCarrinho([]); //Limpa o carrinho assim que finalizar o pedido;
   }
 
   const total = carrinho.reduce(

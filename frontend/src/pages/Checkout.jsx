@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../components/Footer";
 
 function Checkout() {
   const { carrinho, total, finalizarPedido } = useContext(CartContext);
@@ -94,7 +95,7 @@ function Checkout() {
         </ContainerInfoCliente>
       </Corpo>
 
-      
+      <Footer/>
 
     </>
   );
@@ -111,6 +112,7 @@ const Corpo = styled.div`
   font-family: "Nunito", sans-serif;
   min-height: 100vh;
   padding: 40px 20px;
+  margin-top: 129px;
 `;
 
 const ContainerInfoProduto = styled.div`

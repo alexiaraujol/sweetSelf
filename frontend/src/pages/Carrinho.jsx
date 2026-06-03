@@ -9,71 +9,92 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Navbar from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
 function Carrinho() {
-
-  const {carrinho, adicionarAoCarrinho, total,   diminuirQuantidade,
-  removerDoCarrinho} = useContext(CartContext); 
+  const {
+    carrinho,
+    adicionarAoCarrinho,
+    total,
+    diminuirQuantidade,
+    removerDoCarrinho,
+  } = useContext(CartContext);
 
   return (
-    <Caixa>
-      <Titulo>
-        <ShoppingCartIcon size={20} />
-        <h2>Carrinho</h2>
-      </Titulo>
+    <>
+      <Navbar />
+      <Corpo>
+        <Caixa>
+          <Titulo>
+            <ShoppingCartIcon size={20} />
+            <h2>Carrinho</h2>
+          </Titulo>
 
-      {carrinho.length === 0 ? (
-        <Texto>
-          <p>🧁 Seu carrinho está vazio</p>
-          <p>Adicione doces deliciosos!</p>
-          </Texto>
+          {carrinho.length === 0 ? (
+            <Texto>
+              <p>🧁 Seu carrinho está vazio</p>
+              <p>Adicione doces deliciosos!</p>
+            </Texto>
+          ) : (
+            carrinho.map((item) => (
+              <Produto key={item.id}>
+                {<Imagem src={item.imagem} />}
+                <InfoProduto>
+                  <h3>{item.nome}</h3>
+                  <p>R$ {(item.preco * item.quantidade).toFixed(2)}</p>
+                </InfoProduto>
 
-      ) : (
-        carrinho.map((item) => (
-          <Produto key={item.id}>
-            {<Imagem src={item.imagem} />}
-            <InfoProduto>
-              <h3>{item.nome}</h3>
-              <p>R$ {(item.preco * item.quantidade).toFixed(2)}</p>
-            </InfoProduto>
+                <AdicionaProduto>
+                  <Quantidade>
+                    <button onClick={() => diminuirQuantidade(item.id)}>
+                      <MinusIcon size={20} />
+                    </button>
 
-            <AdicionaProduto>
-              <Quantidade>
-                <button onClick={() => diminuirQuantidade(item.id)}>
-                  <MinusIcon size={20} />
-                </button>
+                    <span>{item.quantidade}</span>
 
-                <span>{item.quantidade}</span>
+                    <button onClick={() => adicionarAoCarrinho(item)}>
+                      <PlusIcon size={20} />
+                    </button>
+                  </Quantidade>
 
-                <button onClick={() => adicionarAoCarrinho(item)}>
-                  <PlusIcon size={20} />
-                </button>
-              </Quantidade>
+                  <Remove onClick={() => removerDoCarrinho(item.id)}>
+                    <TrashIcon size={20} />
+                  </Remove>
+                </AdicionaProduto>
+              </Produto>
+            ))
+          )}
 
-              <Remove onClick={() => removerDoCarrinho(item.id)}>
-                <TrashIcon size={20} />
-              </Remove>
-            </AdicionaProduto>
-          </Produto>
-        ))
-      )}
-
-      <Total>
-        <p>Total:</p>
-        <p>R$ {total.toFixed(2)}</p>
-      </Total>
-      <FinalizarPedido to="/checkout">
-        Finalizar Pedido
-        <div>
-          <ArrowRightIcon size={20} weight="bold" />
-        </div>
-      </FinalizarPedido>
-    </Caixa>
+          <Total>
+            <p>Total:</p>
+            <p>R$ {total.toFixed(2)}</p>
+          </Total>
+          <FinalizarPedido to="/checkout">
+            Finalizar Pedido
+            <div>
+              <ArrowRightIcon size={20} weight="bold" />
+            </div>
+          </FinalizarPedido>
+        </Caixa>
+      </Corpo>
+      <Footer/>
+    </>
   );
 }
 
 export default Carrinho;
-
+const Corpo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(to bottom, #fff8f3, #faf3e0);
+  font-family: "Nunito", sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
+  margin-top: 129px;
+`;
 const Caixa = styled.div`
   width: 50vw;
   margin: 10px;
@@ -100,7 +121,7 @@ const Titulo = styled.div`
   display: flex;
   padding: 10px;
 
-  &>h2 {
+  & > h2 {
     font-size: 24px;
     font-weight: 700;
     color: #3e2723;
