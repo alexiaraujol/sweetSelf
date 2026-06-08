@@ -42,25 +42,20 @@ export default Home;
 
 const Conteudo = styled.div`
   display: flex;
-
   align-items: flex-start;
   justify-content: space-around;
   flex-wrap: wrap;
-
   background: linear-gradient(to bottom, #fff8f3, #faf3e0);
-
   font-family: "Nunito", sans-serif;
-
   min-height: calc(100vh - 60px - 68px);
-
-  padding: 30px;
-      margin-top: 161px;
-    margin-bottom: 61px;
+  padding: 158px 30px;
 
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 165px;
+;
   }
 `;
 
@@ -78,17 +73,13 @@ const ListadeProdutos = styled.div`
 const FinalizarPedido = styled.button`
   width: 80%;
   height: 50px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   border: none;
   border-radius: 16px;
-
   background: linear-gradient(135deg, #f56b8a, #ff8fab);
-
   color: #fff;
   font-size: 18px;
   font-weight: 600;
@@ -98,7 +89,6 @@ const FinalizarPedido = styled.button`
   cursor: pointer;
 
   transition: all 0.2s ease;
-
   box-shadow: 0 4px 12px rgba(255, 111, 145, 0.3);
 
   &:hover {

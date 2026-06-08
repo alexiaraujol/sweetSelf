@@ -4,6 +4,7 @@ import Checkout from "./pages/Checkout";
 import Pedido from "./pages/Pedido";
 import { useState } from "react";
 import Carrinho from "./pages/Carrinho";
+import Admin from "./pages/Admin";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path="/checkout" element={<Checkout  carrinho={carrinho}/>}/>
       <Route path="/pedido"element={<Pedido/>}/>
       <Route path="/carrinho" element={<Carrinho/>}/>
+      <Route path="/admin" element={<Admin/>}/>
     </Routes>
 
     
