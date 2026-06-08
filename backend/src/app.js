@@ -4,13 +4,16 @@ const express = require('express');
 const cors = require("cors");
 require("dotenv").config();
 
+const authRoutes = require("./routes/auth");
+const pedidosRoutes = require("./routes/pedidos");
+
 const app = express();
 
 app.use(cors()); 
 app.use(express.json());
 
-// app.use("/auth", authRoutes);
-// app.use("/pedidos", pedidosRoutes)
+app.use("/auth", authRoutes);
+app.use("/pedidos", pedidosRoutes);
 
 app.get('/', (req, res) => {
   res.send('API rodando com sucesso');
